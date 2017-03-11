@@ -6,8 +6,34 @@ var Cadena = (function () {
     }
     Object.defineProperty(Cadena.prototype, "esPalindromo", {
         get: function () {
-            var cadenaOriginal = this._cad.toLocaleLowerCase;
-            return "Si es palindromo";
+            var resultado = "";
+            var cadenaOriginal = this._cad.toLocaleLowerCase();
+            var letraEspacios = cadenaOriginal.split("");
+            var cadenaSinEspacios = "";
+            for (var _i = 0; _i < letraEspacios.length; _i++) {
+                if (letraEspacios[_i] != " ") {
+                    cadenaSinEspacios += letraEspacios[_i];
+                }
+            }
+            var letras = cadenaSinEspacios.split("");
+            var letrasReves = cadenaSinEspacios.split("").reverse();
+            var iguales = true;
+            for (var _i = 0; _i < letras.length; _i++) {
+                if (letras[_i] == letrasReves[_i]) {
+                    // Todo bien
+                }
+                else {
+                    // Alguna letra es distinta, por lo que ya no es un palindromo
+                    iguales = false;
+                }
+            }
+            if (iguales) {
+                resultado += " es un palíndromo";
+            }
+            else {
+                resultado += " no es un palíndromo";
+            }
+            return "La frase o palabra " + resultado;
         },
         enumerable: true,
         configurable: true
@@ -34,7 +60,7 @@ var Cadena = (function () {
                     total_vocales += 1;
                 }
             }
-            return total_vocales;
+            return "Son " + total_vocales + " vocales";
         },
         enumerable: true,
         configurable: true
@@ -42,7 +68,9 @@ var Cadena = (function () {
     Object.defineProperty(Cadena.prototype, "cuentaLetras", {
         get: function () {
             var totalLetras;
-            return totalLetras;
+            var cadenaOriginal = this._cad.toLocaleLowerCase();
+            totalLetras = cadenaOriginal.length;
+            return "Son " + totalLetras + " letras";
         },
         enumerable: true,
         configurable: true
@@ -50,7 +78,10 @@ var Cadena = (function () {
     Object.defineProperty(Cadena.prototype, "cuentaPalabras", {
         get: function () {
             var totalPalabras;
-            return totalPalabras;
+            var cadenaOriginal = this._cad.toLocaleLowerCase();
+            var letraEspacios = cadenaOriginal.split(" ");
+            totalPalabras = letraEspacios.length;
+            return "Son " + totalPalabras + " Palabras";
         },
         enumerable: true,
         configurable: true
